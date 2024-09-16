@@ -1,0 +1,15 @@
+*
+
+!*.cpp
+!*.c
+!*.pdf
+!*.md
+!*.txt
+!*.png
+!*.jpg
+!*.docx
+!*.py
+!*.h
+!.gitignore
+
+!*/
