@@ -1,0 +1,16 @@
+# Ignore all files
+*
+
+# Except the following file types
+!.gitignore
+!*.cpp
+!*.CPP
+!*.h
+!*.H
+!*.c
+!*.C
+!*.txt
+!*.output
+
+# Except directories
+!*/

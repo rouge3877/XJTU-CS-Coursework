@@ -1,0 +1,106 @@
+        ++++++ Construct Global 1 is created ++++++
+        ++++++ Construct Global 2 is created ++++++
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ MAIN FUNCTION BEGIN: $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+---------------------- Para#0:  Initialization ---------------------
+        ++++++ Construct Local  1 is created ++++++
+        ++++++ Construct Local  2 is created ++++++
+        ++++++ Construct Dynamic1 is created ++++++
+        ++++++ Construct Dynamic2 is created ++++++
+--------------------------------END---------------------------------
+
+
+------------------ Para#1:  Inside External func() -----------------
+    Call external func(): 1  with object: 0x7ffc0032c5b0
+        ++++++ Copy Construct Local  1 is created ++++++
+  ------ Sec#1:  Data of object ------
+    in Object: 0x7ffc0032c6b0
+    Integer data: 3
+    Double data: 4.9
+    Char pointer data: Local  1
+    String data: Object
+  ------ Sec#2: Address of data ------
+    in Object: 0x7ffc0032c6b0
+    Integer data: 0x7ffc0032c6b0
+    Double data: 0x7ffc0032c6b8
+    Char pointer data: 0x563bdcc92020
+    String data: 0x7ffc0032c6c8
+        ++++++ Destruct Local  1 is deleted ++++++
+--------------------------------END---------------------------------
+
+
+------------------ Para#2:     Inside     main() -------------------
+    Global  object 1 address: 0x563bdbb38260
+    Global  object 2 address: 0x563bdbb382a0
+    Local   object 1 address: 0x7ffc0032c5b0
+    Local   object 2 address: 0x7ffc0032c570
+    Dynamic object 1 address: 0x563bdcc91f40
+    Dynamic object 2 address: 0x563bdcc91fb0
+    Size of MyClass: 64 bytes
+-------------------------------END----------------------------------
+
+
+------------------ Para#3: Details of  globalObj1 ------------------
+  ------ Sec#1:  Data of object ------
+    in Object: 0x563bdbb38260
+    Integer data: 1
+    Double data: 2.3
+    Char pointer data: Global 1
+    String data: Object
+  ------ Sec#2: Address of data ------
+    in Object: 0x563bdbb38260
+    Integer data: 0x563bdbb38260
+    Double data: 0x563bdbb38268
+    Char pointer data: 0x563bdcc90eb0
+    String data: 0x563bdbb38278
+    nonStaticFunction address: dbb357a4
+    staticFunction address: dbb35772
+-------------------------------END----------------------------------
+
+
+------------------ Para#4:  Details of  localObj1 ------------------
+  ------ Sec#1:  Data of object ------
+    in Object: 0x7ffc0032c5b0
+    Integer data: 3
+    Double data: 4.9
+    Char pointer data: Local  1
+    String data: Object
+  ------ Sec#2: Address of data ------
+    in Object: 0x7ffc0032c5b0
+    Integer data: 0x7ffc0032c5b0
+    Double data: 0x7ffc0032c5b8
+    Char pointer data: 0x563bdcc91f00
+    String data: 0x7ffc0032c5c8
+    nonStaticFunction address: dbb357a4
+    staticFunction address: dbb35772
+-------------------------------END----------------------------------
+
+
+------------------ Para#5: Details of dynamicObj1 ------------------
+  ------ Sec#1:  Data of object ------
+    in Object: 0x563bdcc91f40
+    Integer data: 5
+    Double data: 6.3
+    Char pointer data: Dynamic1
+    String data: Object
+  ------ Sec#2: Address of data ------
+    in Object: 0x563bdcc91f40
+    Integer data: 0x563bdcc91f40
+    Double data: 0x563bdcc91f48
+    Char pointer data: 0x563bdcc91f90
+    String data: 0x563bdcc91f58
+    nonStaticFunction address: dbb357a4
+    staticFunction address: dbb35772
+-------------------------------END----------------------------------
+
+        ++++++ Destruct Dynamic1 is deleted ++++++
+        ++++++ Destruct Dynamic2 is deleted ++++++
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ MAIN FUNCTION END $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+        ++++++ Destruct Local  2 is deleted ++++++
+        ++++++ Destruct Local  1 is deleted ++++++
+        ++++++ Destruct Global 2 is deleted ++++++
+        ++++++ Destruct Global 1 is deleted ++++++
