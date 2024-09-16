@@ -1,0 +1,26 @@
+The farmer's strategy for crossing the river 1: 
+*/Each line represents the status but not the Handling process/*
+--------Strategy 1 begin--------
+    Farmer in the South bank, Wolf in the South bank, Goat in the South bank, Cabbage in the South bank,  (0000)
+--> Farmer in the North bank, Wolf in the South bank, Goat in the North bank, Cabbage in the South bank,  (1010)
+--> Farmer in the South bank, Wolf in the South bank, Goat in the North bank, Cabbage in the South bank,  (0010)
+--> Farmer in the North bank, Wolf in the South bank, Goat in the North bank, Cabbage in the North bank,  (1011)
+--> Farmer in the South bank, Wolf in the South bank, Goat in the South bank, Cabbage in the North bank,  (0001)
+--> Farmer in the North bank, Wolf in the North bank, Goat in the South bank, Cabbage in the North bank,  (1101)
+--> Farmer in the South bank, Wolf in the North bank, Goat in the South bank, Cabbage in the North bank,  (0101)
+--> Farmer in the North bank, Wolf in the North bank, Goat in the North bank, Cabbage in the North bank,  (1111)
+--------Strategy 1 end--------
+
+The farmer's strategy for crossing the river 2: 
+*/Each line represents the status but not the Handling process/*
+--------Strategy 2 begin--------
+    Farmer in the South bank, Wolf in the South bank, Goat in the South bank, Cabbage in the South bank,  (0000)
+--> Farmer in the North bank, Wolf in the South bank, Goat in the North bank, Cabbage in the South bank,  (1010)
+--> Farmer in the South bank, Wolf in the South bank, Goat in the North bank, Cabbage in the South bank,  (0010)
+--> Farmer in the North bank, Wolf in the North bank, Goat in the North bank, Cabbage in the South bank,  (1110)
+--> Farmer in the South bank, Wolf in the North bank, Goat in the South bank, Cabbage in the South bank,  (0100)
+--> Farmer in the North bank, Wolf in the North bank, Goat in the South bank, Cabbage in the North bank,  (1101)
+--> Farmer in the South bank, Wolf in the North bank, Goat in the South bank, Cabbage in the North bank,  (0101)
+--> Farmer in the North bank, Wolf in the North bank, Goat in the North bank, Cabbage in the North bank,  (1111)
+--------Strategy 2 end--------
+

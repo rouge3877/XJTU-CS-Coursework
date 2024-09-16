@@ -1,0 +1,11 @@
+The 1 gays OUT is id=8 and key=23
+The 2 gays OUT is id=11 and key=10
+The 3 gays OUT is id=1 and key=1
+The 4 gays OUT is id=3 and key=6
+The 5 gays OUT is id=10 and key=3
+The 6 gays OUT is id=5 and key=12
+The 7 gays OUT is id=7 and key=11
+The 8 gays OUT is id=4 and key=9
+The 9 gays OUT is id=2 and key=8
+The 10 gays OUT is id=9 and key=5
+The 11 gays OUT is id=6 and key=4
