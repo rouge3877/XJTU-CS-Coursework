@@ -8,6 +8,7 @@ This is a repo for all the computer-related courses Labs/Homework/Tasks/... I to
 |---|---|---|---|---|
 |[👌🏻Completed]|1-2|COMP300205|[程序设计基础](https://github.com/rouge3877/XJTU-Courses-Code/tree/COMP300205)||
 |[👌🏻Completed]|2-1|COMP400505|[数据结构与算法I](https://github.com/rouge3877/XJTU-Courses-Code/tree/COMP400505)|COMP460405|
+|[👌🏻Completed]|2-2|MATH201407|[数学建模II](https://github.com/rouge3877/XJTU-Courses-Code/tree/MATH201407)||
 |[👌🏻Completed]|2-2|EELC400105|[数字逻辑电路](https://github.com/rouge3877/XJTU-Courses-Code/tree/EELC400105)|EELC300505|
 |[👌🏻Completed]|2-2|COMP400727|[计算机系统导论](https://github.com/rouge3877/XJTU-Courses-Code/tree/COMP400727)||
 |[👌🏻Completed]|2-2|COMP462205|[算法分析与设计](https://github.com/rouge3877/XJTU-Courses-Code/tree/COMP462205)||
