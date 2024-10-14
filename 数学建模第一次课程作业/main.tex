@@ -1,0 +1,651 @@
+% 第1次作业（教材 P31-32）
+% 学号尾数是偶数的，在偶数序号（2，4，6，8，10）题中任选一个完成。
+% 学号尾数是奇数的，在奇数序号（1，3，5，7，9）题中任选一个完成。
+% 第2次作业-------第3章研究课题任选一个
+% 第3次作业------第6章研究课题任选一个完成
+% 第4次作业------阅读教材第5章5.1和第6章6.1，回答下列问题：
+% 1、马尔萨斯模型的假设是什么？请写出人口预测的马尔萨斯模型。
+% 2、我们今天放弃马尔萨斯模型而至少要考虑Logistic模型，原因是什么？请写出Logistic模型。
+% 3、与马尔萨斯模型和Logistic模型相比，Leslie模型的优点是什么？请写出人口预测的Leslie模型。
+% 4、在按年龄分组的种群增长模型中，设一群的动物最高年龄为15岁，每5岁一组分成3个年龄组，由小到大各组的繁殖率为F1=0，F2=4，F3=3，存活率为P1=1/2，P2=1/4，开始时3组各有1000只，求15年后分别有多少只？
+
+% 作业要求：
+%  （1）word版本；小四号字体，单倍行距，所有的公式、符号都要通过公式编辑器键入。
+%   （2）内容包括：题目，假设，符号说明，解答、结论等。
+%   （3）若认为自己做的不错，可制作PPT课堂宣讲（有加分）。
+% 作业提交：---------第1-4次作业全部写在一个文档中，以 “学号+姓名”命名，在思源学堂提交.
+
+
+\documentclass[a4,10pt,zihao=-4]{ctexart}
+\linespread{1.0} % 设置单倍行距
+
+\usepackage{ctex}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts,amsmath,amscd,amssymb,amsthm}
+\usepackage{latexsym,bm}
+\usepackage{cite}
+\usepackage{mathtools,mathdots,graphicx,array}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{mpdoc}
+\usepackage{diagbox}
+\usepackage{xcolor,tcolorbox,tikz,tkz-tab,mdframed,tikz-cd}
+\usepackage{framed}
+\usepackage{verbatim}
+\usepackage{extarrows}
+\usepackage{pythonhighlight}
+\usepackage{fontspec}
+
+\newcommand*{\dif}{\mathop{}\!\mathrm{d}}
+\newcommand*{\arsinh}{\mathop{}\!\mathrm{arsinh}}
+\newcommand*{\artanh}{\mathop{}\!\mathrm{artanh}}
+\newcommand*{\arcosh}{\mathop{}\!\mathrm{arcosh}}
+\newcommand*{\Li}{\mathop{}\!\textrm{Li}}
+
+
+
+\begin{document}
+\pagenumbering{roman}
+\title{数学建模：第1 - 4次作业}
+
+\author{Name STUID CLASS}
+\date{2024年3月}
+\maketitle
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+\newpage
+
+%---------------------------------------------------------------------------------
+\section{第二章研究课题1 - 合理贷款估算}
+\subsection{题目}
+某人想贷款买房，他估计在10年里每月的还款能力为3000元，已知贷款年利率$R=6\%$（月利率$r=0.5\%$），贷款年数为$N=10$年。请建立他应该借多少钱的数学模型，并利用你所建立的数学模型估算他应该借（贷款）多少钱？
+
+\subsection{合理假设}
+
+\begin{itemize}
+    \item 在整个贷款期限内，月度还款能力保持恒定。
+    \item 贷款以等额月供的形式偿还。
+    \item 利率在贷款期限内保持不变。
+    \item 计算中不考虑额外费用或收费。
+    \item 贷款是按摊销方式进行的，意味着每笔付款都包括本金和利息。
+\end{itemize}
+
+\subsection{符号说明}
+\begin{itemize}
+    \item $P$ 为贷款的本金金额
+    \item $r$ 为月利率
+    \item $N$ 为总贷款年限
+    \item $M$ 为每月付款金额
+    \item $A$ 为贷款金额
+\end{itemize}
+
+\subsection{模型建立}
+
+每月应还款额的计算公式是等额本息还款公式，用于计算贷款每月的固定还款额，包括本金和利息。该公式基于贷款本金、贷款年利率和贷款期限来计算。
+
+我们可以使用摊销贷款的计算公式来计算每月付款：
+
+\[
+M = \frac{P \times r \times (1+r)^{N \times 12}}{(1+r)^{N \times 12}-1}
+\]
+
+而我们的目标是需要解出$P$。而对于这个公式：
+\begin{itemize}
+    \item $P \times r \times (1+r)^{N \times 12}$ ：这一部分计算的是每月还款中的利息部分。$P \times r$ 表示每月应支付的利息。$(1+r)^{N \times 12}$ 是一个复利计算，表示贷款期限内利息的复利效应，即每月应支付的利息不同。这一部分计算出了贷款期限内所有利息的综合。
+    \item $(1+r)^{N \times 12}-1$ ：这一部分计算的是贷款利息的复利因子。贷款期限内，每月支付的利息在复利效应下积累到了贷款到期时的总利息。这一部分减去1是为了将复利因子转换为还款因子。
+\end{itemize}
+
+最终，将贷款总额$P$分摊到每个月的还款中，即贷款总额除以每月应还款的利息和本金的总和，得到了每月应还款额$M$。
+
+显然，从公式中可以看出，每月还款额相同，但随着时间推移，还款额中利息部分逐渐减少，本金部分逐渐增加。
+
+\subsection{模型求解}
+
+已知：
+\begin{itemize}
+    \item $M = 3000$ 元（每月还款能力）
+    \item $r = 0.005$（月利率）
+    \item $N = 10 \times 12 = 120$（总付款次数）
+\end{itemize}
+
+将给定的值代入公式中：
+
+\[
+3000 = \frac{P \times 0.005 \times (1+0.005)^{10 \times 12}}{(1+0.005)^{10 \times 12}-1} 
+\]
+
+又由于，已知 $(1+0.005)^{10 \times 12} = (1.005)^{120} \approx 1.822$：
+
+代入并解出$P$：
+
+\[
+P \approx \frac{2466}{0.00911}
+\]
+
+\[
+P \approx 270535.97
+\]
+
+因此，某人应该贷款约$270,535.97$元来满足他的还款能力。
+
+\subsection{模型验证}
+
+为了验证解决方案，我们可以使用借款金额计算每月还款：
+
+\[
+M = \frac{270535.97 \times 0.005 \times (1+0.005)^{10 \times 12}}{(1+0.005)^{10 \times 12}-1}
+\]
+
+\[
+M \approx 3003
+\]
+
+每月还款金额确实接近$3000$元，确认了解决方案的有效性。
+
+\subsection{结论}
+
+数学模型表明，根据其估计的每月还款能力和给定的贷款条件，该人应该借款约为$270,535.97$元来购买房屋。
+
+
+
+
+
+
+
+
+
+
+%---------------------------------------------------------------------------------
+\newpage
+\section{第三章研究课题3 - 发射卫星为何常用三级火箭系统}
+\subsection{题目}
+火箭是一种运输工具，它的任务是将具有一定质量的航天器送入太空。航天器在太空中的运行情况与它进入太空时的初始速度的大小和方向有关。一般地说，如果航天器进入飞行轨道的速度小于第一宇宙速度（7.91 km/s），航天器将落回地面；如果航天器进入轨道的速度介于第一宇宙速度与第二宇宙速度（11.2 km/s）之间时，它在地球引力场内飞行，成为人造地球卫星；当航天器进入轨道的速度介于第二宇宙速度与第三字宙速度（16.7 km/s)之间时，它就飞离地球成为太阳系内的人造行星；当航天器进入轨道的速度达到或超过第三宇宙速度时，它就能飞离太阳系。
+
+随着人类逐渐进入深空探测和空间飞行器的功能增多，要求火箭具有更大的运载能力，因而出现了多级火箭。多级火箭就是把几个单级火箭连接在一起形成的，其中的一个火箭先工作，工作完毕后与其它的火箭分离，然后第二个火箭接着工作，依此类推。由几个火箭组成的就称为几级火箭，如二级火箭、三级火箭等。多级火箭的优点是每过一段时间就把不再有用的结构抛弃掉，无需再消耗推进剂来带着它和有效载荷（航天器）一起飞行。因此，只要在增加推进剂质量的同时适当地将火箭分成若干级，最终就可以使火箭达到足够大的运载能力。然而，级数太多不仅费用增加，可靠性降低，火箭性能也会因结构质量增加而变坏。请建立数学模型，分析说明发射卫星为什么一般使用三级火箭系统？
+
+
+\subsection{发射人造卫星时火箭的最低未速度}
+
+\subsubsection{假设}
+
+\begin{itemize}
+    \item 卫星轨道是以地球中心为圆心的某个平面上的圆周，卫星在此轨道上以地球引力作为向心力绕地球做平面匀速圆周运动。
+    \item 地球是固定于空间中的一个均匀球体，其质量集中于球心。
+    \item 其他星球对卫星的引力忽略不计。
+\end{itemize}
+
+\subsubsection{建模与求解}
+
+设地球半径为 $R$，质量为 $M$；卫星轨道半径为 $r$，卫星质量为 $m$。根据假设(2)和(3)，卫星只受到地球的引力，由牛顿万有引力定律可知其引力大小为：
+\begin{equation}
+F = \frac{GMm}{r^2}
+\end{equation}
+为消去常数 $G$，把卫星放在地球表面，则由式(1)，得
+\begin{equation*}
+mg = \frac{GMm}{R^2} \quad \text{or} \quad GM=R^2g
+\end{equation*}
+再代入式(1)，得
+\begin{equation}
+F = mg\left(\frac{R}{r}\right)^2
+\end{equation}
+根据假设（1），若卫星围绕地球做匀速圆周运动的速度为 $v$，则其向心力为 $mv^2/r$ 。因为卫星所受的地球引力就是它做匀速运动的向心力，故有
+\begin{equation*}
+mg\left(\frac{R}{r}\right)^2 = \frac{mv^2}{r}
+\end{equation*}
+由此便推得卫星距地面为 $(r-R)$ km，必需的最低速度的数学模型为
+\begin{equation}
+v = R\sqrt{\frac{g}{r}}
+\end{equation}
+取 $R = 6400$ km，$r-R=600$ km，代入式（3），得 $v \approx 7.6$ km/s。
+
+即要把卫星送入离地面 600 km 高的轨道，火箭的未速度最低应为 7.6 km/s。
+
+\subsection{火箭推进力及升空速度}
+
+\subsubsection{假设}
+
+火箭的简单模型由一台发动机和一个燃料仓组成。燃料燃烧产生大量气体从火箭未端喷出，给火箭一个向前的推力。火箭飞行要受到地球引力、空气阻力、地球自转与公转等的影响，使火箭升空后做曲线运动。
+
+为使问题简化，假设：
+
+\begin{itemize}
+    \item 火箭在喷气推动下做直线运动，火箭所受的重力和空气阻力忽略不计。
+    \item 在 $t$ 时刻火箭质量为 $m(t)$，速度为 $v(t)$ 且均为时间的连续可微函数。
+    \item 从火箭末端喷出气体的速度（相对火箭本身）为常数 $u$。
+\end{itemize}
+
+\subsubsection{建模与分析}
+
+由于火箭在运动过程中不断喷出气体，使其质量不断减少，在 $(t, t+\Delta t)$ 内的减少量可由泰勒展开式表示为
+\begin{equation}
+m(t+\Delta t)-m(t)=\frac{\text{d}m}{\text{d}t}\Delta t + o(\Delta t)
+\end{equation}
+因为喷出的气体相对于地球的速度为 $(v(t)-u)$，则由动量守恒定律，有
+\begin{equation}
+m(t)v(t) = m(t + \Delta t) v(t + \Delta t) - \left[\frac{\text{d}m}{\text{d}t}\Delta t + o(\Delta t)\right][v(t)-u]
+\end{equation}
+从式（4）和式（5）可得推进力的数学模型为
+\begin{equation}
+m\frac{\text{d}v}{\text{d}t} = -u\frac{\text{d}m}{\text{d}t}
+\end{equation}
+令 $t =0$ 时，$v(0) = v_0$，$m(0) = m_0$，求解式（6）得火箭升空速度模型为
+\begin{equation}
+v(t)=v_0+u\ln \frac{m_0}{m(t)}
+\end{equation}
+式（6）表明火箭所受推力等于燃料消耗速度与喷气速度（相对火箭）的乘积。
+
+式（7）表明，在 $v_0$，$m_0$ 一定的条件下，升空速度 $v(t)$ 由喷气速度（相对火箭） $u$ 及质量比 $\frac{m_0}{m(t)}$ 决定。
+
+这为提高火箭速度找到了正确途径。从燃料上设法提高值；从结构上设法减少 $m(t)$。
+
+\subsection{为什么不能用一级火箭发射人造卫星}
+
+\subsubsection{假设}
+
+火箭-卫星系统的质量可分为三部分：
+
+\begin{itemize}
+    \item $m_P$（有效负载，如卫星）
+    \item $m_F$（燃料质量）
+    \item $m_S$（结构质量，如外壳、燃料容器及推进器）
+\end{itemize}
+
+一级火箭未速度上限主要受目前技术条件的限制，假设：
+
+\begin{itemize}
+    \item 目前技术条件为：相对箭的喷气速度 $u = 3$ km/s 及
+    \begin{equation*}
+        \frac{m_S}{m_F+m_S} \ge \frac{1}{9}
+    \end{equation*}
+    \item 初速度 $v_0$ 忽略不计，即 $v_0 = 0$。
+\end{itemize}
+
+\subsubsection{建模与分析}
+
+因为升空火箭的最终（燃料耗尽）质量为 $m_P+m_S$，所以由式(7)及假设(2)得到未速度为
+\begin{equation}
+v = u\ln \frac{m_0}{m_P+m_S}
+\end{equation}
+令 $m_S = \lambda (m_F+m_S) = \lambda(m_0 - m_P)$，代入式(8)，得
+\begin{equation}
+v = u\ln\frac{m_0}{\lambda m_0 + (1-\lambda)m_P}
+\end{equation}
+于是，当卫星脱离火箭，即 $m_P=0$ 时，便得火箭未速度上限的数学模型为
+\begin{equation*}
+v^0 =u\ln \frac{1}{\lambda}
+\end{equation*}
+由假设(1)，取 $u=3$ Km，$\lambda = 1/9$，便得火箭速度上限
+\begin{equation*}
+v^0 =u\ln \frac{1}{\lambda} = 3\ln 9 \approx 6.6\text{Km/s}
+\end{equation*}
+因此，用一级火箭发射卫星，在目前技术条件下无法达到相应高度所需的速度。
+
+\subsection{理想火箭与多级火箭卫星系统}
+
+所谓理想火箭，就是能够随着燃料的燃烧不断抛弃火箭的无用结构。下面建立它的数学模型：
+
+\subsubsection{理想火箭模型}
+
+由动量守恒定律，有
+\begin{equation*}
+m(t)v(t) = m(t + \Delta t) v(t + \Delta t) - \alpha \frac{\text d m}{\text d t}\Delta t\cdot v(t) - (1-\alpha) \frac{\text d m}{\text d t}\Delta t\cdot[v(t)-u]+o(\Delta t)
+\end{equation*}
+由上式可得理想火箭的数学模型为
+\begin{equation}
+-m(t)\frac{\text d v(t)}{\text d t} = (1-\alpha)\frac{\text d m}{\text d t}\cdot u
+\end{equation}
+及 $v(0)= 0$，$m(0)= m_0$，解得
+\begin{equation}
+v(t)=(1-\alpha)u\ln \frac{m_0}{m(t)}
+\end{equation}
+由上式可知，当燃料耗尽，结构质量抛弃完时，便只剩卫星质量 $m_P$，从而最终速度的数学模型为
+\begin{equation}
+v(t)=(1-\alpha)u\ln \frac{m_0}{m_P}
+\end{equation}
+式(12)表明，当 $m_O$ 足够大时，便可使卫星达到我们所希望它具有的任意速度。例如，考虑到空气阻力和重力等因素，估计要使 $v = 10.5$ Km/s 才行，如果取 $u =3$ Km/s，$\alpha =0.1$，则可推出 $\frac{m_O}{m_P}=50$，即发射 1t 重的卫星大约需 50t 重的理想火箭。
+
+\subsubsection{多级火箭卫星系统}
+
+\textbf{模型假设：}
+多级火箭是自末级开始，逐级燃烧，当第 $i$ 级燃料烧尽时，第 $i$+1 级箭立即自动点火，并抛弃已经无用的第 $i$ 级。用 $m_i$ 表示第 $i$ 级质量，$m_P$ 表示有效负载。为了简单起见，先作如下假设：
+
+\begin{itemize}
+    \item 设各级火箭具有相同的 $\lambda$，$\lambda m_i$ 表示第 $i$ 级的结构质量，$(1-\lambda) m_i$ 表示第 $i$ 级的燃料质量。
+    \item 喷气相对火箭的速度 $u$ 相同，燃烧级的初始质量与其负载质量之比保持不变，该比值记为 $k$。
+\end{itemize}
+
+由式(7)，当第一级火箭燃烧完时，其速度为
+\begin{equation*}
+v_1 = u\ln\frac{m_1+m_2+m_P}{\lambda m_1+m_2+m_P} = u\ln\frac{k+1}{\lambda k+1}
+\end{equation*}
+在第二级火箭燃烧完时，其速度为
+\begin{equation}
+v_2 = v_2+u\ln \frac{m_2+m_P}{\lambda m_2+m_P} = 2u\ln\frac{k+1}{\lambda k+1}
+\end{equation}
+仍取 $u=3$ Km/s，$\lambda = 0.1$，考虑到阻力等因素，为了达到第一宇宙速度 7.9 Km/s，对于二级火箭，欲使 $v_2=10.5$ Km/s，由式(13)得
+\begin{equation*}
+6\ln\frac{k+1}{0.1k+1}= 10.5
+\end{equation*}
+解得 $k=11.2$，这时
+\begin{equation*}
+\frac{m_0}{m_P} = \frac{m_1+m_2+m_P}{m_P}=(k+1)^2\approx 149
+\end{equation*}
+同理，可推出三级火箭
+\begin{equation*}
+v_3 = 3u\ln\frac{k+1}{\lambda k+1}
+\end{equation*}
+欲使 $v_3=10.5$ km/s，应该 $k\approx 3.25$，从而 $\frac{m_0}{m_P}\approx 77$，与二级火箭相比，在达到相同效果的情况下，三级火箭的质量几乎节省了一半。
+
+现记 $n$ 级火箭的总质量（包括有效负载 $m_P$）为 $m_0$，在相同假设下（$u = 3$ Km/s，$v_{\text{final}}=10.5$ Km/s，$\lambda = 0,1$），可以算出相应的 $\frac{m_0}{m_P}$ 值。现将计算结果列于表1中
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+        \hline
+        $n/$级数 & 1 & 2 & 3 & 4 & 5 & $\cdots$ & $\infty$ \\
+        \hline
+        ${m_0}/{m_P}$ & $\times$ & 149 & 77 & 65 & 60 & $\cdots$ & 50 \\
+        \hline
+    \end{tabular}
+    \caption{多级火箭的质量比}
+\end{table}
+
+\subsection{结论}
+通过上面的表1可以看出，采用三级火箭发射可以提高载荷运载能力，克服地球引力，提高飞行效率，以及将载荷投送到更高的轨道，从而满足不同的航天任务需求。虽然四级及以上理论上有更高的质量比，但
+\textbf{实际上，由于受技术条件的限制，采用四级或四级以上的火箭，在经济效益方面是不合算的，因此采用三级火箭是最好的方案。}
+
+
+
+
+%---------------------------------------------------------------------------------
+\newpage
+\section{第六章研究课题1 - 推测受害者死亡时间}
+
+\subsection{题目}
+某天晚上23:00时，在一住宅内发现一受害者的尸体，法医于23:35 赶到现场，立即测量死者体温是30.8摄氏度,一小时后再次测量死者体温是 29.1摄氏度，法医还注意到当时室温是28摄氏度，试估计受害者的死亡时间。
+
+\subsection{合理假设}
+
+\textbf{环境稳定性}：我们假设房间温度在整个时间段内保持恒定。
+
+\textbf{正常新陈代谢活动}：我们假设受害者的体温在死后遵循正常的新陈代谢降温过程。
+
+\textbf{测量准确性}：我们假设对受害者体温的测量是准确的。
+
+\textbf{均匀降温速率}：我们假设受害者的体温均匀降温，即，我们假设受害者的身体成分均匀，从而使整个身体的冷却速度一致。
+
+\textbf{无外部因素}：我们假设加热或冷却设备等外部因素不会影响体温；
+
+\textbf{活着时的体温}：我们认为活着的受害者的体温是37摄氏度。
+
+
+\subsection{符号说明}
+\begin{itemize}
+    \item \( T(t) \): 死者体温，单位为摄氏度，\( t \) 表示时间；
+    \item \( T_a \): 环境温度，单位为摄氏度；
+    \item \( k \): 体表温度的降温速率常数，单位为每分钟；
+    \item \( t_0 \): 死亡时间点；
+    \item \( t_1 \): 法医测量体温的时间点。
+\end{itemize}
+
+\subsection{模型建立}
+
+根据牛顿冷却定律，我们可以建立以下微分方程描述死者体温的变化：
+
+\[
+\frac{dT}{dt} = -k(T - T_a)
+\]
+
+根据测量得到的两个体温值，我们知道当 \( t = t_1 \) 时，\( T(t_1) = 30.8 \) 摄氏度；当 \( t = t_1 +1\) 时，\( T(t_1 + 1) = 29.1 \) 摄氏度。同时，我们知道室温 \( T_a = 28 \) 摄氏度。
+
+\subsection{模型求解}
+此方程较简答，可以直接导出解析解：
+\[
+\cfrac{\text{d}T}{\text{d}t} = -k(T - T_a)
+\]
+
+\[
+\cfrac{1}{T-T_a}\text{d}T = -k\text{d}t
+\]
+
+\[
+\sum\cfrac{1}{T-T_a}\text{d}T = -k\sum\text{d}t
+\]
+
+\[
+\ln|T-T_a| = -kt+C
+\]
+
+\[
+|T-T_a|=\text{e}^{-kt+C}
+\]
+因为我们只考虑冷却，即$T-T_a\ge 0$，所以：
+
+\[
+T(t)=\text{e}^{-kt+C}+T_a
+\]
+
+其中$C$是一个常数，室温 \( T_a = 28 \) 摄氏度。又由于当 \( t = t_1 \) 时，\( T(t_1) = 30.8 \) 摄氏度；当 \( t = t_1 + 1\) 时，\( T(t_1 + 1) = 29.1 \) 摄氏度。得到：
+
+\[
+T(t) = \text{e}^{-0.93t+2.8} + 28
+\]
+
+又由于我们认为活着的受害者的体温是37摄氏度，所以$t_0 - t_1 =-1.29$ 
+
+\subsection{结论}
+
+根据模型计算得到的死亡时间，应该是 22:17 左右。
+
+
+%---------------------------------------------------------------------------------
+\newpage
+\section{第四次作业：种群模型相关}
+\subsection{问题一：马尔萨斯模型}
+
+\subsubsection{问题}
+马尔萨斯模型的假设是什么？请写出人口预测的马尔萨斯模型。
+
+\subsubsection{解答}
+
+马尔萨斯模型的基本假设是增长率与当前基数成正比。也即人口(相对)增长参数$r$是常数。令$P(t)$表时间$t$的人口数，且$P_0$为$t=t_0$时的人口数，则以上叙述可以数量化为
+\begin{equation*}
+ P(t)=P_{0}e^{rt}
+\end{equation*}
+\begin{equation*}
+ \cfrac{\text{d}P}{\text{d}t} = rP
+\end{equation*}
+
+其中：
+\begin{itemize}
+    \item $P_0 = P(0)$ 是初始种群规模（人口数量），而$\frac{\text{d}P}{\text{d}t}$ 表示人口数量随时间的变化率；
+    \item $r$ 为人口增长率，罗纳德·爱尔默·费雪称之为马尔萨斯人口增长参数，阿弗雷德·洛特卡称之为内禀增长率。
+\end{itemize}
+
+
+
+\subsection{问题二：Logistic模型}
+
+\subsubsection{问题}
+我们今天放弃马尔萨斯模型而至少要考虑Logistic模型，原因是什么？请写出Logistic模型。
+\subsubsection{解答}
+
+马尔萨斯模型的预测结果与19世纪以前欧洲一些地区人口统计数据吻合，适用于19世纪后迁往加拿大的欧洲移民后代，也可用于短期人口增长预测。但是不符合19世纪后多数地区人口增长规律，同样也不能预测较长期的人口增长过程。
+
+我们今天放弃马尔萨斯模型而至少要考虑Logistic模型，是因为Logistic模型更为现实和合理，能更好地描述人口增长的实际情况。而这是因为\textbf{资源是有限的}，马尔萨斯模型假设人口增长呈指数增长，这在短期内可能成立，但在长期内却不合理，指数增长是不可持续的。Logistic模型考虑了资源有限的影响，更为贴近实际。也就是说Logistic模型在马尔萨斯模型的基础上考虑了资源、环境等因素对人口增长的阻滞作用，且阻滞作用随人口数量增加而变大。
+
+比利时数学家Verhulst 在1840 年修正了马尔萨斯前节的人口模型，他认为
+「人口之成长不能超过由其地域环境所决定之某最大容量M。」
+他提出下面的模型——通称为Logistic 模型。
+
+\begin{equation*}
+    \cfrac{\text{d}P}{\text{d}t} = r_0 P\left(1-\frac{P}{P_m}\right)
+\end{equation*}
+
+ 
+ 
+其中：
+\begin{itemize}
+    \item $P_0 = P(0)$ 是初始种群规模（人口数量），而$\frac{\text{d}P}{\text{d}t}$ 表示人口数量随时间的变化率；
+    \item $r$ 为人口增长率，罗纳德·爱尔默·费雪称之为马尔萨斯人口增长参数，阿弗雷德·洛特卡称之为内禀增长率；
+    \item $P_m$ 为环境资源允许的稳定人口数。它从总体上考虑了人口的自然出生和因环境资源有限导致的死亡。
+\end{itemize}
+
+
+\subsection{问题三：Leslie模型}
+\subsubsection{问题}
+与马尔萨斯模型和Logistic模型相比，Leslie模型的优点是什么？请写出人口预测的Leslie模型。
+
+\subsubsection{解答}
+Leslie模型相比于马尔萨斯模型和Logistic模型有几个优点：
+
+\begin{itemize}
+    \item \textbf{多阶段人口模型}： Leslie模型允许对人口按照不同年龄段进行分组，从而更好地考虑不同年龄段人口的特点和增长率。这使得Leslie模型在分析人口结构和人口增长方面更为灵活。
+
+    \item \textbf{适用性广泛}： Leslie模型适用于各种人口组成和增长情况的研究，能够更准确地预测人口的未来发展趋势。
+
+    \item \textbf{更具现实性}： Leslie模型考虑了不同年龄段人口的生育率、死亡率等因素，更为符合实际的人口增长情况，能够更准确地描述人口变化的动态过程。
+\end{itemize}
+
+人口预测方程可以写成矩阵形式：
+
+\begin{equation*}
+    \mathbf{N}_{t+1} = \mathbf{L} \cdot \mathbf{N}_t
+\end{equation*}
+
+其中，
+\begin{itemize}
+    \item \(\mathbf{N}_t\) 是包含不同年龄组人口数量的列向量；
+    \item \(\mathbf{N}_{t+1}\) 是下一个时间步的人口向量，表示为列向量；
+    \item \(\mathbf{L}\) 是 Leslie 矩阵。
+\end{itemize}
+
+假设我们有 \(n\) 个年龄组，每个年龄组对应一个特定的年龄区间。Leslie模型的 Leslie 矩阵可以表示为一个 \(n \times n\) 的矩阵，其中每个元素 \(l_{ij}\) 表示在第 \(i\) 个年龄组到第 \(j\) 个年龄组的人口转移率或生育率。Leslie矩阵可以表示为：
+
+\[
+\mathbf{L} = \begin{bmatrix}
+l_{11} & l_{12} & l_{13} & \cdots & l_{1n} \\
+l_{21} & l_{22} & l_{23} & \cdots & l_{2n} \\
+l_{31} & l_{32} & l_{33} & \cdots & l_{3n} \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+l_{n1} & l_{n2} & l_{n3} & \cdots & l_{nn} \\
+\end{bmatrix}
+\]
+
+其中，\(l_{ij}\) 表示第 \(i\) 个年龄组到第 \(j\) 个年龄组的人口转移率或生育率。
+
+而人口数量向量 \( \mathbf{N}_t \) 可以表示为一个包含每个年龄组人口数量的列向量，其中每个元素 \( N_i \) 表示第 \( i \) 个年龄组的人口数量。如果我们有 \( n \) 个年龄组，则人口数量向量 \( \mathbf{N}_t \) 可以表示为：
+
+\[
+\mathbf{N}_t = \begin{bmatrix}
+N_1 \\
+N_2 \\
+N_3 \\
+\vdots \\
+N_n
+\end{bmatrix}
+\]
+
+其中，\( N_i \) 表示第 \( i \) 个年龄组的人口数量。
+
+\subsection{问题四：根据种群模型计算种群数量增长}
+
+\subsubsection{问题}
+在按年龄分组的种群增长模型中，设一群的动物最高年龄为15岁，每5岁一组分成3个年龄组，由小到大各组的繁殖率为F1=0，F2=4，F3=3，存活率为P1=1/2，P2=1/4，开始时3组各有1000只，求15年后分别有多少只？
+
+
+\subsubsection{符号说明}
+在本问题中，我们使用了以下符号：
+\begin{itemize}
+    \item $F_1, F_2, F_3$: 分别表示三个年龄组的繁殖率，其中 $F_1$ 表示第一组（0-4岁）的繁殖率，$F_2$ 表示第二组（5-9岁）的繁殖率，$F_3$ 表示第三组（10-14岁）的繁殖率。
+    \item $P_1, P_2$: 分别表示第一组和第二组的存活率，其中 $P_1$ 表示第一组（0-4岁）的存活率，$P_2$ 表示第二组（5-9岁）的存活率。
+    \item $\mathbf{N}_t$: 表示时间 $t$ 时刻各年龄段动物数量的列向量。
+    \item $\mathbf{N}_{t+1}$: 表示时间 $t+1$ 时刻各年龄段动物数量的列向量。
+    \item $\mathbf{L}$: Leslie 矩阵，用于描述动物种群的增长和存活情况。
+\end{itemize}
+
+
+\subsubsection{模型假设}
+根据模型，我们作以下假设和设定：
+\begin{itemize}
+    \item 动物的最高年龄为15岁。
+    \item 每5岁一组分成3个年龄组，分别为0-4岁、5-9岁和10-14岁。
+    \item 每个年龄组内的动物数量是按年龄分布的。
+    \item 每个年龄组的繁殖率和存活率是固定的，并且与年龄组的变化无关。
+    \item 动物种群没有外部因素的影响，如迁徙、疾病等。
+\end{itemize}
+
+
+
+\subsubsection{模型建立及求解}
+根据问题描述，我们采用 Leslie 模型。先将动物的年龄分为三个年龄组，每组包含5年的年龄段。给定的繁殖率和存活率如下：
+
+\begin{itemize}
+    \item 第一组（0-4岁）的繁殖率为 \(F_1 = 0\)，存活率为 \(P_1 = \frac{1}{2}\)；
+    \item 第二组（5-9岁）的繁殖率为 \(F_2 = 4\)，存活率为 \(P_2 = \frac{1}{4}\)；
+    \item 第三组（10-14岁）的繁殖率为 \(F_3 = 3\)，存活率为 1（因为是最高年龄组）。
+\end{itemize}
+
+开始时，每个年龄组有 1000 只动物。为了计算每个年龄组在 15 年后的动物数量。首先，我们构建 Leslie 矩阵如下：
+
+\[
+\mathbf{L} = \begin{bmatrix}
+0 & 4 & 3 \\
+\frac{1}{2} & 0 & 0  \\
+0 & \frac{1}{4} & 0 \\
+\end{bmatrix}
+\]
+
+根据 Leslie 模型，我们有下列递推关系：
+
+\[
+\mathbf{N}_{t+1} = \mathbf{L} \cdot \mathbf{N}_t
+\]
+
+
+接下来，我们进行计算。初始时每个年龄段有1000只动物，我们可以构建初始的动物数量向量：
+
+\[
+\mathbf{N}_0 = \begin{bmatrix}
+1000 \\
+1000 \\
+1000 \\
+\end{bmatrix}
+\]
+
+现在，我们按照上述模型进行计算。具体来说就是重复计算每个年龄组在下一年的动物数量，直到计算出 15 年后每个年龄组的动物数量。下面是具体的Python代码实现：
+
+\begin{python}
+import numpy as np
+
+L = np.array([ # 定义 Leslie 矩阵
+    [0, 4, 3],
+    [1/2, 0, 0],
+    [0, 1/4, 0]
+])
+
+N0 = np.array([1000, 1000, 1000]) # 定义初始条件：初始时每个年龄段有1000只动物
+
+for year in range(3): # 模拟15年后每个年龄段的动物数量
+    N0 = np.dot(L, N0)
+
+print("15年后每个年龄段的动物数量：") # 打印结果
+for i, num in enumerate(N0):
+    print("第{}组动物数量：{}只".format(i + 1, int(num)))
+
+\end{python}
+
+这段代码模拟了15年后每个年龄组的动物数量。
+
+\subsubsection{结论}
+计算得到15年后每个年龄段的动物数量。\textbf{其中第1组动物数量为14375只；第2组动物数量为1375只；第3组动物数量为875只}。
+
+
+
+
+%---------------------------------------------------------------------------------
+
+\end{document}
